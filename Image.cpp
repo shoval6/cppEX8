@@ -8,12 +8,12 @@ Image::Image(int dim) : dim(dim) {
 
 }
 
-
+/*
 Image::~Image() {
 
     delete[] image;
 }
-
+*/
 
 string Image::createPPM(Pair** pr ,int size) {
 
@@ -30,7 +30,7 @@ string Image::createPPM(Pair** pr ,int size) {
         }
     }
 
-
+    srand(time(0));
     string filename = "image_" + to_string(rand()) + ".ppm";
     ofstream imageFile(filename, ios::out | ios::binary);
     imageFile << "P6" << endl << dim <<" " << dim << endl << 255 << endl;
@@ -85,8 +85,8 @@ void  Image::drawO(int row, int col, int cell) {
     int r = cell / 2;
     int x2_center = cell/2;
     int y2_center = cell/2;
-    int pixrow = row * cell;
-    int pixcol = col * cell;
+    int pixrow = row*cell;
+    int pixcol = col*cell;
 
     for (int i = 0; i < dim; i++) {
         pixrow = row * cell;
