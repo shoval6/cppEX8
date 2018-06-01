@@ -27,6 +27,7 @@ private:
 
 public:
     Image(int dim);
+    ~Image();
     string createPPM(Pair** pr , int size);
 
 };
