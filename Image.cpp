@@ -25,7 +25,7 @@ string Image::createPPM(Pair** pr ,int size) {
     }
 
 
-    string filename = "image.ppm";
+    string filename = "image_" + to_string(rand()) + ".ppm";
     ofstream imageFile(filename, ios::out | ios::binary);
     imageFile << "P6" << endl << dim <<" " << dim << endl << 255 << endl;
     imageFile.write(reinterpret_cast<char*>(image), 3*dim*dim);
