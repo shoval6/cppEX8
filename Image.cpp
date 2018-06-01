@@ -8,12 +8,12 @@ Image::Image(int dim) : dim(dim) {
 
 }
 
-/*
+
 Image::~Image() {
 
     delete[] image;
 }
-*/
+
 
 string Image::createPPM(Pair** pr ,int size) {
 
