@@ -104,7 +104,7 @@ ostream &operator<<(ostream &os, const Board &br) {
 
 istream &operator>>(istream &in, Board &br) {
 
-    int i=0,j=0;
+    uint i=0,j=0;
     char token;
     string Filename, str;
     getline(in, Filename);   // insert input to -> Filename
