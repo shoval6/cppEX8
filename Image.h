@@ -28,6 +28,6 @@ private:
 public:
     Image(int dim);
     ~Image();
-    string createPPM(Pair** pr , int size);
+    string createPPM(Pair** pr , uint size);
 
 };
