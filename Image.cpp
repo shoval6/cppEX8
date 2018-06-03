@@ -43,12 +43,13 @@ string Image::createPPM(Pair** pr ,uint size) {
 }
 
 
+
 void Image::drawTable(int cell) {
 
     int jump = cell;
     for(int i=0; i<dim; i++){
         for(int j=0; j<dim; j++){
-            if((j%jump==0 && j!=0) || (i%jump==0) && i!=0){
+            if((j!=0 && j%jump==0) || (i!=0 && i%jump==0)){
                 image[dim*i+j].red = 0;
                 image[dim*i+j].green = 0;
                 image[dim*i+j].blue = 0;
@@ -57,6 +58,8 @@ void Image::drawTable(int cell) {
     }
 
 }
+
+
 
 void Image::drawX(int row, int col, int cell) {
 
