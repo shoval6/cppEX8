@@ -15,7 +15,7 @@ Image::~Image() {
 }
 
 
-string Image::createPPM(Pair** pr ,int size) {
+string Image::createPPM(Pair** pr ,uint size) {
 
     int cell = dim/size;
     drawTable(cell);
@@ -82,7 +82,7 @@ void Image::drawX(int row, int col, int cell) {
 void  Image::drawO(int row, int col, int cell) {
 
     int dx, dy;
-    int r = cell / 2;
+    int r = cell/2 -10;
     int x2_center = cell/2;
     int y2_center = cell/2;
     int pixrow = row*cell;
