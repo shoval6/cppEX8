@@ -48,7 +48,7 @@ void Image::drawTable(int cell) {
     int jump = cell;
     for(int i=0; i<dim; i++){
         for(int j=0; j<dim; j++){
-            if((j%jump==0 && j!=0) || (i%jump==0)){
+            if((j%jump==0 && j!=0) || (i%jump==0) && i!=0){
                 image[dim*i+j].red = 0;
                 image[dim*i+j].green = 0;
                 image[dim*i+j].blue = 0;
