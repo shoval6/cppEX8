@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include "Board.h"
 #include "IllegalCoordinateException.h"
 #include "IllegalCharException.h"
@@ -14,10 +15,12 @@ create(10);
 
 Board::Board(uint size) {
     create(size);
-
 }
 
 Board::Board(const Board &other) {
+    if(tsize!=0){
+        this->free();
+    }
     create(other.size());
     for (int i = 0; i < other.size(); i++)
         for (int j = 0; j < other.size(); j++)
@@ -33,8 +36,6 @@ void Board::create(uint size) {
     array2D = new Pair *[tsize];
     for (int i = 0; i < tsize; ++i)
         array2D[i] = new Pair[tsize];
-
-
 }
 
 
@@ -53,8 +54,8 @@ char Board::operator[](const Pair &pt) const {
 }
 
 Board &Board::operator=(char chr) {
-    if (chr != '.')
-        throw IllegalCharException(chr);
+//    if (chr != '.')
+//        throw IllegalCharException(chr);
     initial();
     return *this;
 
@@ -65,8 +66,6 @@ Board &Board::operator=(const Board &other) {
         if (tsize != other.size()) {
             free();
             create(other.size());
-
-
         }
         for (int i = 0; i < other.size(); i++)
             for (int j = 0; j < other.size(); j++)
@@ -106,29 +105,40 @@ istream &operator>>(istream &in, Board &br) {
 
     uint i=0,j=0;
     char token;
-    string Filename, str;
-    getline(in, Filename);   // insert input to -> Filename
-    ifstream ifs(Filename);
-    ifs >> str;
-    Board temp{(uint)str.length()};
-    ifs.seekg(0, std::ios::beg);  // reset the stream
-    while (ifs.get(token)) {
-        if(token == 'X' || token == 'O' || token == '.')
-            temp[{i,j++}] = token;
-        if(j==temp.size()) {
-            i++;
-            j = 0;
+    vector <char> vec;
+
+    bool flag = true;
+    uint sizeOfBoard;
+    int counter =0;
+    while (cin.get(token)) {
+        if(flag&&token=='\n'){
+            flag =false;
+            sizeOfBoard=counter;
+        }
+        counter ++;
+        vec.push_back(token);
+    }
+    Board temp{sizeOfBoard};
+    int index = 0;
+    for(int i=0; i<sizeOfBoard; i++){
+        for(int j=0; j<sizeOfBoard; j++){
+            if(vec.at(index)!='\n'){
+                temp.array2D[i][j] = vec.at(index);
+            }
+            else{
+                temp.array2D[i][j] = vec.at(++index);
+            }
+            index++;
         }
     }
-    ifs.close();
     br = temp;
     return in;
-
 }
 
 
 string Board::draw(int dim) {
     Image image(dim);
-    return image.createPPM(array2D,tsize);
+    uint borad_size = tsize;
+    return image.createPPM(array2D,borad_size);
 
 }

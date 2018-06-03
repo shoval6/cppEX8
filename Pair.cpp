@@ -13,10 +13,7 @@ Pair::Pair(uint x, uint y) : x(x), y(y) {}
 
 
 Pair &Pair::operator=(char chr) {
-    if (chr != 'X' && chr != 'O' && chr != '.')
-        throw IllegalCharException(chr);
     this->chr = chr;
-
     return *this;
 }
 
