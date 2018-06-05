@@ -92,7 +92,7 @@ void  Image::drawO(int row, int col, int cell) {
     int pixcol = col*cell;
 
     for (int i = 0; i < dim; i++) {
-        pixrow = row * cell;
+        int pixcol = col*cell;
         for (int j = 0; j < dim; j++) {
             dx = x2_center - i;
             dy = y2_center - j;
